@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+
+<style>
+    body
+{
+  background-color: #404040;
+}
+
+.clockpage
+{
+  margin: auto;
+  max-width: 500px;
+  min-width: 100px;
+  background: white;
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 32px;
+  padding: 10px;
+  font-weight: bold;
+  border-top: 10px solid #7a7c7b;
+  margin-top: 100px;
+}
+</style>
+</head>
+<body onload="clockTimer();">
+    <div class="clockpage">
+    
+    <span id="clock"></span>
+           
+    </div>
+<script>
+function clockTimer()
+{
+    let date = new Date();
+
+let time = [date.getHours(),date.getMinutes(),date.getSeconds()]; 
+    if(time[0] < 10){time[0] = "0"+ time[0];}
+    if(time[1] < 10){time[1] = "0"+ time[1];}
+    if(time[2] < 10){time[2] = "0"+ time[2];}
+
+let current_time = [time[0],time[1],time[2]].join(':');
+let clock = document.getElementById("clock");
+
+clock.innerHTML = current_time;
+
+setTimeout("clockTimer()", 1000);
+
+let div = document.querySelector('div');
+    div.addEventListener('click', (event) =>{
+    if(event.target.tagName === 'SPAN') {
+        event.target.classList.toggle('active');
+    }
+    let timeS = [date.getHours(),date.getMinutes()]; 
+    let current_timeS = [time[0],time[1]].join(':');
+    clock.innerHTML = current_timeS;
+    
+    setTimeout("clockTimer()",1000);
+
+    console.log(event);
+})
+}
+ 
+</script>
+</body>
+</html>
